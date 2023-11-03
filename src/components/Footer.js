@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -11,30 +12,36 @@ const Footer = () => {
                 <h3 className='font-titleFont text-white text-base font-medium text-center mb-3'>
                   Community
                 </h3>
-                <ul className='flex flex-col gap-2 font-bodyFont'>
-                  <li className='footerLink'>Careers</li>
-                  <li className='footerLink'> Blog</li>
-                  <li className='footerLink'>About</li>
-                </ul>
+                <Link to='/about' className='no-underline text-white'>
+                  <ul className='flex flex-col gap-2 font-bodyFont'>
+                    <li className='footerLink'>Careers</li>
+                    <li className='footerLink'> Blog</li>
+                    <li className='footerLink'>About</li>
+                  </ul>
+                </Link>
               </div>
               <div>
                 <h3 className='font-titleFont text-white text-base font-medium text-center  mb-3'>
                   Let us Help
                 </h3>
-                <ul className='flex flex-col gap-2 font-bodyFont'>
-                  <li className='footerLink'>Help Center</li>
-                  <li className='footerLink'>Help Forum</li>
-                  <li className='footerLink'>Tutorials</li>
-                </ul>
+                <Link to='/about' className='no-underline text-white'>
+                  <ul className='flex flex-col gap-2 font-bodyFont'>
+                    <li className='footerLink'>Help Center</li>
+                    <li className='footerLink'>Help Forum</li>
+                    <li className='footerLink'>Tutorials</li>
+                  </ul>
+                </Link>
               </div>
               <div>
                 <h3 className='font-titleFont text-white text-base  text-end font-medium ml-6 mb-3'>
                   Developers
                 </h3>
-                <ul className='flex flex-col gap-2 font-bodyFont'>
-                  <li className='footerLink'>Blogger Api</li>
-                  <li className='footerLink'>Dev Forum</li>
-                </ul>
+                <Link to='/about' className='no-underline text-white'>
+                  <ul className='flex flex-col gap-2 font-bodyFont'>
+                    <li className='footerLink'>Blogger Api</li>
+                    <li className='footerLink'>Dev Forum</li>
+                  </ul>
+                </Link>
               </div>
             </div>
           </div>

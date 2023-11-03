@@ -10,6 +10,7 @@ import Header from './components/Header';
 import Login from './pages/Login';
 import { auth } from './firebase';
 import { signOut } from 'firebase/auth';
+import Nodata from './pages/Nodata';
 
 const App = () => {
   const [active, setActive] = useState('home');
@@ -42,7 +43,6 @@ const App = () => {
         user={user}
         handleLogout={handleLogout}
       />
-      <ToastContainer position='top-center' />
       <Routes>
         <Route path='/' element={<Login setActive={setActive} />} />
         <Route
@@ -73,6 +73,7 @@ const App = () => {
           }
         />
         <Route path='/about' element={<About />} />
+        <Route path='*' element={<Nodata />} />
       </Routes>
     </div>
   );

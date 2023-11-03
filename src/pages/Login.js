@@ -86,8 +86,8 @@ const Login = ({ setActive }) => {
           </div>
         </div>
         <div className=' text-white font-titleFont text-lg font-semibold px-6 py-2 flex justify-center items-center '>
-          <div className='w-full flex flex-col justify-center items-center heading mt-4'>
-            <form className='row ' onSubmit={handleAuth}>
+          <div className='w-full flex flex-col justify-center items-center heading '>
+            <form className='row  ' onSubmit={handleAuth}>
               {signUp && (
                 <>
                   <div className='col-6 py-3'>
@@ -147,28 +147,30 @@ const Login = ({ setActive }) => {
 
               <div className='col-12 py-3 text-center'>
                 <button
-                  className={`btn ${!signUp ? 'btn-sign-in' : 'btn-sign-up'}`}
+                  className={`btn ${
+                    !signUp ? 'btn-sign-in' : 'btn-sign-up'
+                  } "border-2 border-white px-5 rounded "`}
                   type='submit'
+                  style={{ color: '#fff', fontWeight: '800' }}
                 >
                   {!signUp ? 'Sign-in' : 'Sign-up'}
                 </button>
               </div>
-              <h5> Or</h5>
+              <h5 className='text-center '> Or</h5>
               <div className=' flex justify-center items-center rounded'>
                 <button
                   onClick={handleLogin}
-                  className='bg-gradient-to-r from-orange-500 to-transparent text-white py-2.5 px-12'
+                  className='border-1 border-white p-2 rounded mb-3 text-base'
                 >
-                  Sign-In with Google
+                  Sign-in with Google
                 </button>
-                          
               </div>
             </form>
             <div>
               {!signUp ? (
                 <>
                   <div className='text-center justify-content-center mt-2 pt-2'>
-                    <p className='small fw-bold mt-2 pt-1 mb-0'>
+                    <p className='small fw-bold -mt-4 pt-1 mb-0'>
                       Don't have an account ?
                       <span
                         className='ml-1 text-yellow-400'
@@ -203,16 +205,21 @@ const Login = ({ setActive }) => {
           </div>
         </div>
       </div>
-      <div>
-        <button onClick={() => setShow(!show)}>View Test Credential</button>
+      <div className='flex   justify-center items-center mt-2 '>
+        <button
+          className='px-2  py-1.5 text-sm text-white font-semibold rounded-sm mt-2 bg-[#4287f5]'
+          onClick={() => setShow(!show)}
+        >
+          View Test Credential
+        </button>
         {show ? (
-          <div>
-            <h6>User Credential</h6>
+          <div className=' flex flex-col  border-1 px-3 bg-blue-100 ml-3 border-blue-400 rounded mb-3'>
+            <h6 className='font-semibold '>User Credential</h6>
             <p>
-              <span>Email :</span> test
+              <span className='font-semibold '>Email :</span> test1@gmail.com
             </p>
-            <p>
-              <span>Password :</span> 12
+            <p className='-mt-4'>
+              <span className='font-semibold  '>Password :</span> 121212
             </p>
           </div>
         ) : null}

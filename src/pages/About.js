@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaHome } from 'react-icons/fa';
 
 const About = () => {
   return (
@@ -26,6 +28,11 @@ const About = () => {
           </p>
         </div>
       </div>
+      <Link to='/home' className=''>
+        <button className=' flex justify-center items-center gap-2 w- ml-5  py-2 px-3 text-sm text-white font-semibold rounded-sm bg-[#4287f5] fixed bottom-5 right-5 mb-2  '>
+          Back to <FaHome className='w-[20px] h-[20px]' />
+        </button>
+      </Link>
     </div>
   );
 };
