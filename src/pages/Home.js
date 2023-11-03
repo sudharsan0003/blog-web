@@ -13,7 +13,6 @@ import { db } from '../firebase';
 import BlogSection from '../components/BlogSection';
 import Spinner from '../components/spinner';
 import { toast } from 'react-toastify';
-
 import Trending from '../components/Trending';
 import Footer from '../components/Footer';
 

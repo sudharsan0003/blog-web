@@ -8,12 +8,12 @@ const Header = ({ active, setActive, handleLogout, user }) => {
   return (
     <div className='w-full h-14 bg-slate-700  text-whiteText flex flex-row justify-between items-center gap-5 sticky top-0 z-50'>
       <div className=' px-4  flex flex-row items-center gap-3 '>
-        <Link to='/'>
+        <Link to='/home'>
           <div className=' flex flex-col text-white mb-3 '>
             <FaBlog />
           </div>
         </Link>
-        <Link to='/'>
+        <Link to='/home'>
           <div className='headerHover  mdl:inline-flex'>
             <p className='text-lg  text-white  no-underline font-normal flex flex-col'>
               Home
@@ -48,7 +48,7 @@ const Header = ({ active, setActive, handleLogout, user }) => {
             <p className=' text-m  text-white font-light flex justify-center items-center capitalize'>
               {user?.displayName}
             </p>
-            <Link to='./login'>
+            <Link to='/'>
               <p
                 className='text-whiteText font-normal text-sm headerHover'
                 onClick={handleLogout}
@@ -58,7 +58,7 @@ const Header = ({ active, setActive, handleLogout, user }) => {
             </Link>
           </>
         ) : (
-          <Link to='/login'>
+          <Link to='/'>
             <div className='flex justify-center font-normal text-white headerHover'>
               <p>Login</p>
             </div>

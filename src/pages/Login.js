@@ -2,10 +2,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  signInWithPopup,
 } from 'firebase/auth';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { auth } from '../firebase';
+import { auth, provider } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 
 const initialState = {
@@ -19,14 +20,29 @@ const initialState = {
 const Login = ({ setActive }) => {
   const [state, setState] = useState(initialState);
   const [signUp, setSignUp] = useState(false);
-
   const { email, password, firstName, lastName, confirmPassword } = state;
+  const [show, setShow] = useState(false);
+  const [value, setValue] = useState('');
 
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
+
+  const handleLogin = (user) => {
+    signInWithPopup(auth, provider).then((data) => {
+      setValue(data.user.email);
+      localStorage.setItem('email', data.user.email);
+      setTimeout(() => {
+        navigate('/home');
+      }, 1500);
+      toast.success('Login Successfully');
+    });
+  };
+  useEffect(() => {
+    setValue(localStorage.getItem('email'));
+  });
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -58,7 +74,7 @@ const Login = ({ setActive }) => {
         return toast.error('All fields are mandatory to fill');
       }
     }
-    navigate('/');
+    navigate('/home');
   };
 
   return (
@@ -137,6 +153,16 @@ const Login = ({ setActive }) => {
                   {!signUp ? 'Sign-in' : 'Sign-up'}
                 </button>
               </div>
+              <h5> Or</h5>
+              <div className=' flex justify-center items-center rounded'>
+                <button
+                  onClick={handleLogin}
+                  className='bg-gradient-to-r from-orange-500 to-transparent text-white py-2.5 px-12'
+                >
+                  Sign-In with Google
+                </button>
+                          
+              </div>
             </form>
             <div>
               {!signUp ? (
@@ -176,6 +202,20 @@ const Login = ({ setActive }) => {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <button onClick={() => setShow(!show)}>View Test Credential</button>
+        {show ? (
+          <div>
+            <h6>User Credential</h6>
+            <p>
+              <span>Email :</span> test
+            </p>
+            <p>
+              <span>Password :</span> 12
+            </p>
+          </div>
+        ) : null}
       </div>
     </div>
   );

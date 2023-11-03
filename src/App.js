@@ -30,7 +30,7 @@ const App = () => {
     signOut(auth).then(() => {
       setUser(null);
       setActive('login');
-      navigate('/login');
+      navigate('/');
     });
   };
 
@@ -44,16 +44,22 @@ const App = () => {
       />
       <ToastContainer position='top-center' />
       <Routes>
-        <Route path='/' element={<Home setActive={setActive} user={user} />} />
+        <Route path='/' element={<Login setActive={setActive} />} />
+        <Route
+          path='/home'
+          element={
+            user && user.uid ? (
+              <Home setActive={setActive} user={user} />
+            ) : (
+              <Navigate to='/' />
+            )
+          }
+        />
         <Route path='/detail/:id' element={<Detail setActive={setActive} />} />
         <Route
           path='/create'
           element={
-            user && user.uid ? (
-              <EditPage user={user} />
-            ) : (
-              <Navigate to='/login' />
-            )
+            user && user.uid ? <EditPage user={user} /> : <Navigate to='/' />
           }
         />
         <Route
@@ -62,11 +68,10 @@ const App = () => {
             user && user.uid ? (
               <EditPage user={user} setActive={setActive} />
             ) : (
-              <Navigate to='/' />
+              <Navigate to='/home' />
             )
           }
         />
-        <Route path='/login' element={<Login setActive={setActive} />} />
         <Route path='/about' element={<About />} />
       </Routes>
     </div>

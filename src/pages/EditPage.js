@@ -138,7 +138,7 @@ const EditPage = ({ user, setActive }) => {
     } else {
       return toast.error('All fields are mandatory');
     }
-    navigate('/');
+    navigate('/home');
   };
 
   return (
