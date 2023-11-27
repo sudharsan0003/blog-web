@@ -13,8 +13,8 @@ const Footer = () => {
                   Community
                 </h3>
                 <Link to='/about' className='no-underline text-white'>
-                  <ul className='flex flex-col gap-2 font-bodyFont'>
-                    <li className='footerLink'>Careers</li>
+                  <ul className='flex flex-col gap-2 font-bodyFont '>
+                    <li className='footerLink '>Careers</li>
                     <li className='footerLink'> Blog</li>
                     <li className='footerLink'>About</li>
                   </ul>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaBlog } from 'react-icons/fa';
 
 const Header = ({ active, setActive, handleLogout, user }) => {

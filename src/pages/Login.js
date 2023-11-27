@@ -5,6 +5,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import React, { useState, useEffect } from 'react';
+
 import { toast } from 'react-toastify';
 import { auth, provider } from '../firebase';
 import { useNavigate } from 'react-router-dom';
