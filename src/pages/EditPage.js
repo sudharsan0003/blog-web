@@ -38,11 +38,8 @@ const EditPage = ({ user, setActive }) => {
   const [form, setForm] = useState(initialState);
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(null);
-
   const { title, tags, category, trending, description } = form;
-
   const { id } = useParams();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -78,7 +75,6 @@ const EditPage = ({ user, setActive }) => {
         }
       );
     };
-
     file && uploadFile();
   }, [file]);
 

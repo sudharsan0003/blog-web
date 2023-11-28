@@ -1,27 +1,22 @@
 import {
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
   signInWithPopup,
 } from 'firebase/auth';
 import React, { useState, useEffect } from 'react';
-
 import { toast } from 'react-toastify';
 import { auth, provider } from '../firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const initialState = {
-  firstName: '',
-  lastName: '',
   email: '',
   password: '',
-  confirmPassword: '',
 };
 
 const Login = ({ setActive }) => {
   const [state, setState] = useState(initialState);
   const [signUp, setSignUp] = useState(false);
-  const { email, password, firstName, lastName, confirmPassword } = state;
+  const { email, password } = state;
   const [show, setShow] = useState(false);
   const [value, setValue] = useState('');
 
@@ -47,33 +42,12 @@ const Login = ({ setActive }) => {
 
   const handleAuth = async (e) => {
     e.preventDefault();
-    if (!signUp) {
-      if (email && password) {
-        const { user } = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        // setUser(user);
-        setActive('Home');
-      } else {
-        return toast.error('All fields are mandatory to fill');
-      }
+    if (email && password) {
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      // setUser(user);
+      setActive('Home');
     } else {
-      if (password !== confirmPassword) {
-        return toast.error("Password doesn't match");
-      }
-      if (firstName && lastName && email && password) {
-        const { user } = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        await updateProfile(user, { displayName: `${firstName} ${lastName}` });
-        setActive('home');
-      } else {
-        return toast.error('All fields are mandatory to fill');
-      }
+      return toast.error('All fields are mandatory to fill');
     }
     navigate('/home');
   };
@@ -89,30 +63,6 @@ const Login = ({ setActive }) => {
         <div className=' text-white font-titleFont text-lg font-semibold px-6 py-2 flex justify-center items-center '>
           <div className='w-full flex flex-col justify-center items-center heading '>
             <form className='row  ' onSubmit={handleAuth}>
-              {signUp && (
-                <>
-                  <div className='col-6 py-3'>
-                    <input
-                      type='text'
-                      className='w-full  py-1 border border-zinc-400 px-2 text-base rounded-sm outline-none  text-black'
-                      placeholder='First Name'
-                      name='firstName'
-                      value={firstName}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className='col-6 py-3'>
-                    <input
-                      type='text'
-                      className='w-full  py-1 border border-zinc-400 px-2 text-base rounded-sm outline-none  text-black'
-                      placeholder='Last Name'
-                      name='lastName'
-                      value={lastName}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </>
-              )}
               <div className='col-12 py-3'>
                 <input
                   type='email'
@@ -133,18 +83,6 @@ const Login = ({ setActive }) => {
                   onChange={handleChange}
                 />
               </div>
-              {signUp && (
-                <div className='col-12 py-3'>
-                  <input
-                    type='password'
-                    className='w-full  py-1 border border-zinc-400 px-2 text-base rounded-sm outline-none  text-black'
-                    placeholder='Confirm Password'
-                    name='confirmPassword'
-                    value={confirmPassword}
-                    onChange={handleChange}
-                  />
-                </div>
-              )}
 
               <div className='col-12 py-3 text-center'>
                 <button
@@ -154,7 +92,7 @@ const Login = ({ setActive }) => {
                   type='submit'
                   style={{ color: '#fff', fontWeight: '800' }}
                 >
-                  {!signUp ? 'Sign-in' : 'Sign-up'}
+                  Sign-in
                 </button>
               </div>
               <h5 className='text-center '> Or</h5>
@@ -168,40 +106,35 @@ const Login = ({ setActive }) => {
               </div>
             </form>
             <div>
-              {!signUp ? (
-                <>
-                  <div className='text-center justify-content-center mt-2 pt-2'>
-                    <p className='small fw-bold -mt-4 pt-1 mb-0'>
-                      Don't have an account ?
-                      <span
-                        className='ml-1 text-yellow-400'
-                        style={{ textDecoration: 'none', cursor: 'pointer' }}
-                        onClick={() => setSignUp(true)}
-                      >
-                        Sign Up
-                      </span>
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className='text-center justify-content-center mt-2 pt-2'>
-                    <p className='small fw-bold mt-2 pt-1 mb-0'>
-                      Already have an account ?
-                      <span
-                        className='ml-1 text-yellow-400'
-                        style={{
-                          textDecoration: 'none',
-                          cursor: 'pointer',
-                        }}
-                        onClick={() => setSignUp(false)}
-                      >
-                        Sign In
-                      </span>
-                    </p>
-                  </div>
-                </>
-              )}
+              <div className='text-center justify-content-center mt-2 pt-2'>
+                <p className='small fw-bold -mt-4 pt-1 mb-0'>
+                  Don't have an account ?
+                  <Link
+                    to='/registration'
+                    className='ml-1 text-yellow-400'
+                    style={{ textDecoration: 'none', cursor: 'pointer' }}
+                    onClick={() => setSignUp(true)}
+                  >
+                    Sign Up
+                  </Link>
+                </p>
+              </div>
+
+              {/* <div className='text-center justify-content-center mt-2 pt-2'>
+                <p className='small fw-bold mt-2 pt-1 mb-0'>
+                  Already have an account ?
+                  <span
+                    className='ml-1 text-yellow-400'
+                    style={{
+                      textDecoration: 'none',
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => setSignUp(false)}
+                  >
+                    Sign In
+                  </span>
+                </p>
+              </div> */}
             </div>
           </div>
         </div>

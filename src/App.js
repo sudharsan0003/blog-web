@@ -12,6 +12,9 @@ import { auth } from './firebase';
 import { signOut } from 'firebase/auth';
 import Nodata from './pages/Nodata';
 import { toast } from 'react-toastify';
+import Registration from './pages/Registration';
+import Profile from './pages/Profile';
+import ProfileUpdation from './pages/ProfileUpdation';
 
 const App = () => {
   const [active, setActive] = useState('home');
@@ -92,7 +95,17 @@ const App = () => {
             )
           }
         />
+        <Route
+          path='/registration'
+          element={<Registration user={user} setActive={setActive} />}
+        />
+        <Route
+          path='/updation/:id'
+          element={<ProfileUpdation user={user} setActive={setActive} />}
+        />
+        <Route path='/profile' element={<Profile />} />
         <Route path='/about' element={<About />} />
+
         {/* <Route path='*' element={<Nodata />} /> */}
       </Routes>
     </div>
