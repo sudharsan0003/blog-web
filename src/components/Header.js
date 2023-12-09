@@ -46,7 +46,7 @@ const Header = ({ active, setActive, handleLogout, user }) => {
               />
             </Link>
             <p className=' text-m  text-white font-light flex justify-center items-center capitalize'>
-              {user?.displayName}
+              {/* {userName} */}
             </p>
             <Link to='/' className='no-underline'>
               <p
