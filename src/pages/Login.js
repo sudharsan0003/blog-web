@@ -26,8 +26,7 @@ const Login = () => {
     setValue(localStorage.getItem('email'));
   });
 
-  const handleAuth = async (event) => {
-    event.preventDefault();
+  const handleAuth = async () => {
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -44,10 +43,6 @@ const Login = () => {
   const handleFinalLogin = (e) => {
     e.preventDefault();
     if (email && password) {
-      const data = {
-        email,
-        password,
-      };
       handleAuth();
     } else toast.warning('Input Field Is Mandatory !');
   };

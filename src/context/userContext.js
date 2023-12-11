@@ -1,9 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-
 import { storage, auth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-
 import { getProfileData } from '../utils/firebaseFunction';
 import { toast } from 'react-toastify';
 
@@ -12,7 +10,6 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
   const [profileData, setProfileData] = useState(null);
-
   const [id, setId] = useState();
   const [userName, setUserName] = useState();
   const [email, setEmail] = useState();
@@ -28,7 +25,6 @@ const UserProvider = ({ children }) => {
       `usersImage/${Date.now()}/${imageFile.name}`
     );
     const uploadTask = uploadBytesResumable(storageRef, imageFile);
-
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -80,7 +76,6 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     let subscriber = onAuthStateChanged(auth, (user) => {
-      // console.log(auth.currentUser); //returns null now
       if (user) {
         setAccessToken(user.providerData[0]);
         setEmail(user.providerData[0].email);

@@ -10,7 +10,6 @@ import Header from './components/Header';
 import Login from './pages/Login';
 import { auth } from './firebase';
 import { signOut } from 'firebase/auth';
-import Nodata from './pages/Nodata';
 import { toast } from 'react-toastify';
 import Registration from './pages/Registration';
 import Profile from './pages/Profile';
@@ -105,8 +104,6 @@ const App = () => {
         />
         <Route path='/profile' element={<Profile />} />
         <Route path='/about' element={<About />} />
-
-        {/* <Route path='*' element={<Nodata />} /> */}
       </Routes>
     </div>
   );
