@@ -37,7 +37,7 @@ const Profile = () => {
     if (userName && email && number && gender && city && imageURL) {
       if (number.length === 10) {
         try {
-          const itemToEditRef = doc(db, 'usersProfileData', id);
+          const itemToEditRef = doc(db, 'users', id);
           await updateDoc(itemToEditRef, {
             id,
             userName,
@@ -49,9 +49,7 @@ const Profile = () => {
           });
           fetchProfileData();
           toast.success('Profile Update Successfully !');
-          setTimeout(() => {
-            navigate('/home');
-          }, 1500);
+          navigate('/home');
         } catch (error) {
           console.log(error);
         }
@@ -139,6 +137,10 @@ const Profile = () => {
                     <option value='Coimbatore'>Coimbatore</option>
                     <option value='Chennai'>Chennai</option>
                     <option value='Salem'>Salem</option>
+                    <option value='Trichy'>Trichy</option>
+                    <option value='Chennai'>Madurai</option>
+                    <option value='Tirupur'>Tirupur</option>
+                    <option value='Other'>Other</option>
                   </select>
                 </div>
                 <div className='font-light  '>

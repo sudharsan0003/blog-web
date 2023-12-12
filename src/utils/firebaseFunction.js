@@ -1,10 +1,10 @@
 import { collection, getDocs, setDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 
-const profileCollectionRef = collection(db, 'usersProfileData');
+const profileCollectionRef = collection(db, 'users');
 
 const setProfileData = async (data) => {
-  const profileRef = doc(db, 'usersProfileData', `${Date.now()}`);
+  const profileRef = doc(db, 'users', `${Date.now()}`);
   await setDoc(profileRef, data, { merge: true });
 };
 

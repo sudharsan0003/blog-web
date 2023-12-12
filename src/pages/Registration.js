@@ -29,7 +29,7 @@ const Registration = () => {
         if (err.code === 'auth/email-already-in-use') {
           alert('Email already exist');
           navigate('/registration');
-          toast.warning('Email already exist');
+          toast.warning('Email already exist !');
         }
       });
   };
@@ -53,7 +53,7 @@ const Registration = () => {
             toast.info('Upload is Paused!');
             break;
           case 'running':
-            toast.warning('Waiting for Image Upload!!');
+            toast.warning('Waiting for Image Upload!');
             break;
         }
       },
@@ -169,9 +169,14 @@ const Registration = () => {
                   className='text-black font-medium text-md'
                 >
                   <option defaultChecked>City</option>
+                  <option defaultChecked>City</option>
                   <option value='Coimbatore'>Coimbatore</option>
                   <option value='Chennai'>Chennai</option>
                   <option value='Salem'>Salem</option>
+                  <option value='Trichy'>Trichy</option>
+                  <option value='Chennai'>Madurai</option>
+                  <option value='Tirupur'>Tirupur</option>
+                  <option value='Other'>Other</option>
                 </select>
               </div>
 

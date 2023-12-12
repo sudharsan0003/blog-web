@@ -18,7 +18,7 @@ const Login = () => {
       setTimeout(() => {
         navigate('/home');
       }, 1500);
-      toast.success('Login Successfully');
+      toast.success('Login Successfully !');
     });
   };
   useEffect(() => {
@@ -45,7 +45,7 @@ const Login = () => {
     e.preventDefault();
     if (email && password) {
       handleAuth();
-      toast.success('Login Successfully');
+      toast.success('Login Successfully !');
     } else toast.warning('Input Field Is Mandatory !');
   };
 
