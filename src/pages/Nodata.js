@@ -4,7 +4,7 @@ const Nodata = () => {
   return (
     <div>
       <img
-        src='https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2018/06/Error-404-on-Mozilla-Firefox.webp'
+        src='https://s3-alpha.figma.com/hub/file/1104003948/5675237c-2620-45de-a5c1-2ed3893c7a56-cover.png'
         alt=''
       />
     </div>

@@ -13,6 +13,7 @@ import { signOut } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import Registration from './pages/Registration';
 import Profile from './pages/Profile';
+import Nodata from './pages/Nodata';
 
 const App = () => {
   const [active, setActive] = useState('home');
@@ -99,6 +100,7 @@ const App = () => {
         />
         <Route path='/profile' element={<Profile />} />
         <Route path='/about' element={<About />} />
+        <Route path='*' element={<Nodata />} />
       </Routes>
     </div>
   );

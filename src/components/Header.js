@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FaBlog } from 'react-icons/fa';
-import { CgProfile } from 'react-icons/cg';
 
 const Header = ({ active, setActive, handleLogout, user }) => {
   const userId = user?.uid;
