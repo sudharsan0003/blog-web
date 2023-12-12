@@ -8,7 +8,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [isTestBtn, setIsTestBtn] = useState(false);
   const [show, setShow] = useState(false);
   const [value, setValue] = useState('');
 
@@ -33,7 +32,9 @@ const Login = () => {
         const { providerData } = user;
         setEmail('');
         setPassword('');
-        navigate('/home');
+        setTimeout(() => {
+          navigate('/home');
+        }, 1000);
       })
       .catch((err) => {
         console.log('Err', err.message);
@@ -44,6 +45,7 @@ const Login = () => {
     e.preventDefault();
     if (email && password) {
       handleAuth();
+      toast.success('Login Successfully');
     } else toast.warning('Input Field Is Mandatory !');
   };
 
@@ -51,7 +53,7 @@ const Login = () => {
     <div className='w-full'>
       <div className=' border-[1px]  mt-4  w-[350px] mx-auto flex flex-col items-center text-white bg-gradient-to-r from-sky-400 to-indigo-400 rounded '>
         <div>
-          <div className='w-full flex justify-center items-center heading mt-4'>
+          <div className='w-full flex justify-center items-center heading mt-4 text-lg font-semibold'>
             Sign-in
           </div>{' '}
         </div>
@@ -78,12 +80,12 @@ const Login = () => {
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
-
-              <div className='col-12 py-3 text-center'>
+              <div className='w-full  text-center'>
                 <button
-                  className={'border-2 border-white px-5 rounded '}
+                  className={
+                    'border-1 bg-white/70 border-white py-1 rounded mb-2 text-black font-light duration-200 hover:scale-105 px-3'
+                  }
                   type='submit'
-                  style={{ color: '#fff', fontWeight: '800' }}
                 >
                   Sign-in
                 </button>
@@ -92,7 +94,7 @@ const Login = () => {
               <div className=' flex justify-center items-center rounded'>
                 <button
                   onClick={handleLogin}
-                  className='border-1 border-white p-2 rounded mb-3 text-base'
+                  className='border-1 bg-white/70 border-white p-2 rounded mb-3 text-black font-light duration-200 hover:scale-105'
                 >
                   Sign-in with Google
                 </button>

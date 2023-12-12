@@ -15,6 +15,7 @@ const UserProvider = ({ children }) => {
   const [email, setEmail] = useState();
   const [number, setNumber] = useState();
   const [gender, setGender] = useState();
+  const [city, setCity] = useState();
   const [imageURL, setImageURL] = useState();
 
   const getImageUrl = (event) => {
@@ -65,6 +66,7 @@ const UserProvider = ({ children }) => {
       setEmail(filterUser.email);
       setUserName(filterUser.userName);
       setGender(filterUser.gender);
+      setCity(filterUser.city);
       setImageURL(filterUser.image);
       setNumber(filterUser.number);
     }
@@ -98,6 +100,8 @@ const UserProvider = ({ children }) => {
         setNumber,
         gender,
         setGender,
+        city,
+        setCity,
         imageURL,
         setImageURL,
         getImageUrl,

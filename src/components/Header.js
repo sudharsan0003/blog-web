@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaBlog } from 'react-icons/fa';
+import { CgProfile } from 'react-icons/cg';
 
 const Header = ({ active, setActive, handleLogout, user }) => {
   const userId = user?.uid;
@@ -35,19 +36,20 @@ const Header = ({ active, setActive, handleLogout, user }) => {
           </div>
         </Link>
       </div>
-      <div className='px-4  flex flex-row items-center justify-center gap-2  '>
+      <div className='px-4  flex flex-row items-center justify-center gap-2 '>
         {userId ? (
           <>
-            <Link to='/profile'>
-              <img
-                className='w-[22px] h-[22px] rounded  mb-3 flex justify-center items-center '
-                src='https://cdn-icons-png.flaticon.com/512/149/149071.png'
-                alt='logo'
-              />
+            <Link to='/profile' className='no-underline'>
+              <div className='  flex justify-center items-center px-1 mt-2 mb-2 rounded-lg -ml-[3rem] md:ml-0  '>
+                <div className='flex justify-center items-center -mt-3'>
+                  <img
+                    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT73EzN_QVLcofrYPYGfZl0RQ-rfo4fwRkQQ&usqp=CAU'
+                    alt=''
+                    className='w-5 h-5  rounded-full'
+                  />
+                </div>
+              </div>
             </Link>
-            <p className=' text-m  text-white font-light flex justify-center items-center capitalize'>
-              {/* {userName} */}
-            </p>
             <Link to='/' className='no-underline'>
               <p
                 className='text-whiteText font-normal text-sm headerHover'

@@ -6,6 +6,7 @@ import { db, auth } from '../firebase';
 import { toast } from 'react-toastify';
 
 const Profile = () => {
+  const navigate = useNavigate();
   const {
     userName,
     setUserName,
@@ -15,6 +16,8 @@ const Profile = () => {
     setNumber,
     gender,
     setGender,
+    city,
+    setCity,
     imageURL,
     setImageURL,
     getImageUrl,
@@ -31,7 +34,7 @@ const Profile = () => {
 
   const updateFunc = async (e) => {
     e.preventDefault();
-    if (userName && email && number && gender && imageURL) {
+    if (userName && email && number && gender && city && imageURL) {
       if (number.length === 10) {
         try {
           const itemToEditRef = doc(db, 'usersProfileData', id);
@@ -41,10 +44,14 @@ const Profile = () => {
             email,
             number,
             gender,
+            city,
             image: imageURL,
           });
           fetchProfileData();
           toast.success('Profile Update Successfully !');
+          setTimeout(() => {
+            navigate('/home');
+          }, 1500);
         } catch (error) {
           console.log(error);
         }
@@ -108,18 +115,30 @@ const Profile = () => {
                   />
                 </div>
 
-                <div className=''>
+                <div className='w-f flex justify-between'>
                   <select
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
                     id='gender'
-                    placeholder='gender'
-                    className='bg-black text-white text-base ml-1 font-light rounded-sm'
+                    placeholder='Gender'
+                    className='text-black font-medium text-md'
                   >
                     <option defaultChecked>Gender</option>
                     <option value='Male'>Male</option>
                     <option value='Women'>Women</option>
                     <option value='Other'>Other</option>
+                  </select>
+                  <select
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    id='city'
+                    placeholder='City'
+                    className='text-black font-medium text-md'
+                  >
+                    <option defaultChecked>City</option>
+                    <option value='Coimbatore'>Coimbatore</option>
+                    <option value='Chennai'>Chennai</option>
+                    <option value='Salem'>Salem</option>
                   </select>
                 </div>
                 <div className='font-light  '>
