@@ -18,8 +18,15 @@ import Nodata from './pages/Nodata';
 const App = () => {
   const [active, setActive] = useState('home');
   const [user, setUser] = useState(null);
-
+  const [userName, setUserName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [number, setNumber] = useState();
+  const [gender, setGender] = useState();
+  const [city, setCity] = useState();
+  const [imageURL, setImageURL] = useState();
   const navigate = useNavigate();
+
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
@@ -30,10 +37,21 @@ const App = () => {
     });
   }, []);
 
+  const clearFormInput = () => {
+    setUserName('');
+    setEmail('');
+    setPassword('');
+    setGender('');
+    setNumber('');
+    setImageURL('');
+    setCity('');
+  };
+
   const handleLogout = () => {
     signOut(auth).then(() => {
       setUser(null);
       setActive('login');
+      clearFormInput();
       setTimeout(() => {
         navigate('/');
       }, 1500);

@@ -32,12 +32,15 @@ const Login = () => {
         const { providerData } = user;
         setEmail('');
         setPassword('');
+        toast.success('Login Successfully');
         setTimeout(() => {
           navigate('/home');
         }, 1000);
       })
       .catch((err) => {
-        console.log('Err', err.message);
+        toast.error(
+          'All input fields are Mandatory or Invalid Credential Try again '
+        );
       });
   };
 
@@ -45,7 +48,6 @@ const Login = () => {
     e.preventDefault();
     if (email && password) {
       handleAuth();
-      toast.success('Login Successfully !');
     } else toast.warning('Input Field Is Mandatory !');
   };
 
@@ -131,7 +133,7 @@ const Login = () => {
               <span className='font-semibold '>Email :</span> test@gmail.com
             </p>
             <p className='-mt-4'>
-              <span className='font-semibold  '>Password :</span> 12121212
+              <span className='font-semibold  '>Password :</span> test@123
             </p>
           </div>
         ) : null}

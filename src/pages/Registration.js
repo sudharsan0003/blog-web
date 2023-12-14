@@ -89,7 +89,7 @@ const Registration = () => {
         onSubmit();
         clearFormInput();
       } else toast.warning('Enter valid phone number !');
-    } else toast.warning('Input Field Is Mandatory !');
+    } else toast.warning('All Input Field are Mandatory !');
   };
 
   const clearFormInput = () => {
