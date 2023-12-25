@@ -36,7 +36,7 @@ const UserProvider = ({ children }) => {
             toast.info('Upload is Paused!');
             break;
           case 'running':
-            toast.warning('Waiting for Image Upload!!');
+            toast.warning('Waiting for Image Upload !');
             break;
         }
       },

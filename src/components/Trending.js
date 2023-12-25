@@ -47,9 +47,9 @@ const Trending = ({ blogs }) => {
                     />
                   </div>
                   <div className='absolute h-full w-full top-0 right-0 z-0'></div>
-                  <div className='absolute w-full text-center z-0 p-2.5 bottom-0'>
+                  <div className='absolute w-full text-center z-0 p-2.5 bottom-0 sm:p-0'>
                     <span className='text-white text-center'>{item.title}</span>
-                    <div className='text-sm text-white text-center capitalize -ml-5'>
+                    <div className='text-sm text-white text-center capitalize -ml-5 '>
                       {item.author} - {item.timestamp.toDate().toDateString()}
                     </div>
                   </div>
