@@ -2,6 +2,7 @@ import { UserConsumer } from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { doc, updateDoc } from 'firebase/firestore';
+import { setProfileData } from '../utils/firebaseFunction';
 import { db, auth } from '../firebase';
 import { toast } from 'react-toastify';
 
@@ -21,6 +22,7 @@ const Profile = () => {
     imageURL,
     setImageURL,
     getImageUrl,
+    isEditing,
     id,
     setId,
     userProfile,
@@ -32,29 +34,46 @@ const Profile = () => {
     userProfile();
   }, []);
 
-  const updateFunc = async (e) => {
-    e.preventDefault();
+  const updateFunc = async () => {
     if (userName && email && number && gender && city && imageURL) {
       if (number.length === 10) {
-        try {
-          const itemToEditRef = doc(db, 'users', id);
-          await updateDoc(itemToEditRef, {
-            id,
+        if (!isEditing) {
+          const data = {
             userName,
             email,
             number,
-            gender,
-            city,
             image: imageURL,
-          });
-          fetchProfileData();
-          toast.success('Profile Update Successfully !');
+            city,
+            gender,
+          };
+          setProfileData(data);
           navigate('/home');
-        } catch (error) {
-          console.log(error);
+          fetchProfileData();
+          toast.success('Profile Added Successfully !');
+        } else {
+          try {
+            const itemToEditRef = doc(db, 'users', id);
+            await updateDoc(itemToEditRef, {
+              userName,
+              email,
+              number,
+              image: imageURL,
+              city,
+              gender,
+            });
+          } catch (error) {
+            console.log(error);
+          }
+          navigate('/home');
+          fetchProfileData();
+          toast.success('Profile Updated Successfully');
         }
-      } else toast.warning('Enter valid phone number !');
-    } else toast.warning('Input Field Is Mandatory !');
+      } else {
+        toast.warning('Enter a valid number!');
+      }
+    } else {
+      toast.error('Input Field Is Mandatory!');
+    }
   };
 
   return (
