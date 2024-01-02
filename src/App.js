@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import Registration from './pages/Registration';
 import Profile from './pages/Profile';
 import Nodata from './pages/Nodata';
+import { UserConsumer } from '../src/context/userContext';
 
 const App = () => {
   const [active, setActive] = useState('home');
@@ -26,6 +27,7 @@ const App = () => {
   const [city, setCity] = useState();
   const [imageURL, setImageURL] = useState();
   const navigate = useNavigate();
+  const { setProfileData, accessToken, setAccessToken } = UserConsumer();
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -86,7 +88,7 @@ const App = () => {
             user && user.uid ? (
               <Home setActive={setActive} user={user} />
             ) : (
-              <Navigate to='/' />
+              <Navigate to='/home' />
             )
           }
         />
@@ -99,7 +101,11 @@ const App = () => {
         <Route
           path='/create'
           element={
-            user && user.uid ? <EditPage user={user} /> : <Navigate to='/' />
+            user && user.uid ? (
+              <EditPage user={user} />
+            ) : (
+              <Navigate to='/create' />
+            )
           }
         />
         <Route
@@ -116,7 +122,16 @@ const App = () => {
           path='/registration'
           element={<Registration user={user} setActive={setActive} />}
         />
-        <Route path='/profile' element={<Profile />} />
+        <Route
+          path='/profile'
+          element={
+            user && user.uid ? (
+              <Profile user={user} setActive={setActive} />
+            ) : (
+              <Navigate to='/home' />
+            )
+          }
+        />
         <Route path='/about' element={<About />} />
         <Route path='*' element={<Nodata />} />
       </Routes>
